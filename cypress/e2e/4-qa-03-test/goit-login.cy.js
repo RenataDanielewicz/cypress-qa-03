@@ -1,40 +1,26 @@
-import { Login } from "../../pages/Login";
+import { LoginPage } from "../../pages/LoginPage";
 import { HomePage } from "../../pages/HomePage";
+
+const loginPage = new LoginPage();
+const homePage = new HomePage();
 
 describe("Validating login page elements and loging process", () => {
 
-  let LoginPage;
-  let Home;
-
-  before(() => {
-    LoginPage = new Login();
-    Home = new HomePage();
-  })
-
   it("login page test", () => {
-    // visit page
-    LoginPage.navigate();
-    // check title
-    LoginPage.validateLoginTitle();
-    // check inputs
-    LoginPage.validateInputs();
-    // check button
-    LoginPage.validateButton();
-    // check link
-    LoginPage.validatePasswordLink();
-    // check loging in
-    LoginPage.validateLogingIn()
-    // visit page
-    Home.validateUrl();
-    // check hamburger menu
-    Home.validateHamburgerMenu();
-    // check loging out
-    Home.validateLogingOut();
+    loginPage.navigate();
+    loginPage.validateLoginTitle();
+    loginPage.validateInputs();
+    loginPage.validateButton();
+    loginPage.validatePasswordLink();
+    loginPage.fillAndValidateLoginForm();
+    homePage.validateUrl();
+    homePage.validateHamburgerMenu();
+    homePage.validateLogingOut();
   });
 });
 
 describe("login test 2", () => {
   it("login and logout", () => {
-      cy.loginCmd('https://www.edu.goit.global/account/login','https://www.edu.goit.global/homepage',"testowyqa@qa.team", "QA!automation-1");
+      cy.loginPageCmd('https://www.edu.goit.global/account/login','https://www.edu.goit.global/homepage',"testowyqa@qa.team", "QA!automation-1");
   });
 })

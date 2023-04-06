@@ -33,35 +33,22 @@ Cypress.Commands.add("login", (url, login, password) => {
     cy.get('.css-r81hpm div').last().click().should("have.text", "Log out");
   });
 
-
-  import { LoginCmd } from "../pages/LoginCmd";
+  import { LoginPageCmd } from "../pages/LoginPageCmd";
   import { HomePageCmd } from "../pages/HomePageCmd";
-  
-  Cypress.Commands.add("loginCmd", (url, homeURL, login, password) => {
-  
-    const LoginPage = new LoginCmd();
 
-    LoginPage.navigate(url);
-    // check title
-    LoginPage.validateLoginTitle();
-    // check inputs
-    LoginPage.validateInputs();
-    // check button
-    LoginPage.validateButton();
-    // check link
-    LoginPage.validatePasswordLink();
-    // check loging in
-    LoginPage.validateLogingIn(login, password)
-    // visit page
-    
-    const Home = new HomePageCmd();
-    
-    Home.validateUrl(homeURL);
-    // check hamburger menu
-    Home.validateHamburgerMenu();
-    // check loging out
-    Home.validateLogingOut();
-
+  const loginPage = new LoginPageCmd();
+  const homePage = new HomePageCmd();
+  
+  Cypress.Commands.add("loginPageCmd", (url, homeURL, login, password) => {
+    loginPage.navigate(url);
+    loginPage.validateLoginTitle();
+    loginPage.validateInputs();
+    loginPage.validateButton();
+    loginPage.validatePasswordLink();
+    loginPage.fillAndValidateLoginForm(login, password);
+    homePage.validateUrl(homeURL);
+    homePage.validateHamburgerMenu();
+    homePage.validateLogingOut();
 });
 
     

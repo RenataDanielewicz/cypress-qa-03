@@ -1,4 +1,4 @@
-export class Login {
+export class LoginPage {
       navigate() {
         cy.visit("https://www.edu.goit.global/account/login");
         cy.url().should('be.equal', 'https://www.edu.goit.global/account/login');
@@ -23,7 +23,7 @@ export class Login {
         cy.get(".css-1f1fv1i > .css-1qrvie4").should("have.text", "I can't remember the password");
       }
 
-      validateLogingIn() {
+      fillAndValidateLoginForm() {
         cy.get("#user_email").type("user888@gmail.com").should('have.value', "user888@gmail.com");
         cy.get('#user_password').type("1234567890").should('have.value', "1234567890");
         cy.get('.eckniwg2').click();

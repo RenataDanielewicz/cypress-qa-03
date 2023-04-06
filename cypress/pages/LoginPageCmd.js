@@ -1,4 +1,4 @@
-export class LoginCmd {
+export class LoginPageCmd {
     navigate(url) {
       cy.visit(url);
       cy.url().should('be.equal', url);
@@ -23,7 +23,7 @@ export class LoginCmd {
       cy.get(".css-1f1fv1i > .css-1qrvie4").should("have.text", "I can't remember the password");
     }
 
-    validateLogingIn(login, password) {
+    fillAndValidateLoginForm(login, password) {
       cy.get("#user_email").type(login).should('have.value', login);
       cy.get('#user_password').type(password).should('have.value', password);
       cy.get('.eckniwg2').click();
